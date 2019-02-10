@@ -3,15 +3,139 @@
 
 <head>
   <meta charset="utf-8">
-  <script
-  src="https://code.jquery.com/jquery-3.3.1.slim.js"
-  integrity="sha256-fNXJFIlca05BIO2Y5zh1xrShK3ME+/lYZ0j+ChxX2DA="
-  crossorigin="anonymous"></script>
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.js" integrity="sha256-fNXJFIlca05BIO2Y5zh1xrShK3ME+/lYZ0j+ChxX2DA="
+    crossorigin="anonymous"></script>
   <style>
     @import url(https: //fonts.googleapis.com/css?family=Khula:700);
 
     body {
       background: #111;
+      margin: 0;
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      /* background-color: #f3f3f3; */
+      overflow: hidden;
+    }
+
+    .hearts {
+      width: 100vw;
+      height: 20vw;
+      /* the snippet will be deleted */
+      box-sizing: border-box;
+      padding: 0 5vw;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .heart {
+      width: 15vw;
+      height: 15vw;
+      /* the snippet will be deleted */
+    }
+
+    footer {
+      margin-top: 10vh;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      font-family: "verdana";
+      font-size: 22px;
+      color: #F48FB1;
+    }
+
+
+    .heart {
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .plane {
+      position: absolute;
+      opacity: 0.8;
+    }
+
+    .half-heart {
+      width: 7.5vw;
+      height: 7.5vw;
+      background-color: pink;
+      transform: rotate(-45deg);
+    }
+
+    .heart {
+      transform-style: preserve-3d;
+    }
+
+    .plane-right {
+      transform: rotateY(90deg);
+      /* 因为此处为 90 度垂直, 所以并不可见 */
+    }
+
+    .heart {
+      animation: rotate 5s ease-in-out infinite;
+    }
+
+    .heart:nth-of-type(1) {
+      animation-delay: -5s;
+    }
+
+    /* keyframes */
+    @keyframes rotate {
+      0% {
+        transform: rotateY(0deg) rotateZ(25deg) translateY(7.5vw);
+      }
+
+      50% {
+        transform: rotateY(270deg) rotateZ(25deg) translateY(-7.5vw);
+      }
+
+      100% {
+        transform: rotateY(360deg) rotateZ(25deg) translateY(7.5vw);
+      }
+    }
+
+    .half-heart:before,
+    .half-heart:after {
+      content: "";
+      width: 7.5vw;
+      height: 7.5vw;
+      background-color: pink;
+      border-radius: 100%;
+      position: absolute;
+    }
+
+    .half-heart:before {
+      top: -3.25vw;
+      left: 0;
+    }
+
+    .half-heart:after {
+      top: 0;
+      left: 3.25vw;
+    }
+
+    .heart:nth-of-type(1) {
+      animation-delay: -5s;
+    }
+
+    .heart:nth-of-type(2) {
+      animation-delay: -4s;
+    }
+
+    .heart:nth-of-type(3) {
+      animation-delay: -3s;
+    }
+
+    .heart:nth-of-type(4) {
+      animation-delay: -2s;
+    }
+
+    .heart:nth-of-type(5) {
+      animation-delay: -1s;
     }
 
     .hidden {
@@ -41,7 +165,8 @@
       top: -0.14em;
       left: 10px;
     }
-    .test{
+
+    .test {
       display: none;
       font-family: Khula;
       font-size: 4em;
@@ -57,7 +182,8 @@
       right: 0;
       margin: auto;
     }
-    .console-test{
+
+    .console-test {
       position: relative;
       top: -0.14em;
       left: 10px;
@@ -72,12 +198,49 @@
     <span id='text'></span>
     <div class='console-underscore' id='console'>&#95;</div>
   </div>
-  <div class='test'>
+  <!-- <div class='test'>
       <div class='console-test' id='console'>第一次一起看的電影是哪一部?</div>
       <div class='console-test' id='console'>(A)黑豹</div>
       <div class='console-test' id='console'>(B)不可能的任務</div>
       <div class='console-test' id='console'>(C)沒有一起看過</div>
-  </div>
+  </div> -->
+  <figure class="hearts">
+    <section class="heart">
+      <div class="plane">
+        <div class="half-heart"></div>
+      </div>
+    </section>
+    <section class="heart">
+      <div class="plane plane-left">
+        <div class="half-heart"></div>
+      </div>
+      <div class="plane plane-right">
+        <div class="half-heart"></div>
+      </div>
+    </section>
+    <section class="heart">
+      <div class="plane plane-left">
+        <div class="half-heart"></div>
+      </div>
+      <div class="plane plane-right">
+        <div class="half-heart"></div>
+      </div>
+    </section>
+    <section class="heart">
+      <div class="plane plane-left">
+        <div class="half-heart"></div>
+      </div>
+      <div class="plane plane-right">
+        <div class="half-heart"></div>
+      </div>
+    </section>
+    <section class="heart">
+      <div class="plane">
+        <div class="half-heart"></div>
+      </div>
+    </section>
+  </figure>
+  <footer>pink hearts</footer>
 </body>
 
 <script>
@@ -100,8 +263,8 @@
         nun += 1;
         if (nun === 3) {
           window.clearInterval(myTimer);
-          $('.console-container').css('display','none');
-          $('.test').css('display','block');
+          $('.console-container').css('display', 'none');
+          $('.test').css('display', 'block');
         }
         console.log(nun)
         waiting = true;
