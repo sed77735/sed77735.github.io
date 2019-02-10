@@ -1,10 +1,151 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="utf-8">
-    <title>你好，GitHub</title>
-  </head>
-  <body>
-    <h1>覺得厲害</h1>
-  </body>
+
+<head>
+  <meta charset="utf-8">
+  <script
+  src="https://code.jquery.com/jquery-3.3.1.slim.js"
+  integrity="sha256-fNXJFIlca05BIO2Y5zh1xrShK3ME+/lYZ0j+ChxX2DA="
+  crossorigin="anonymous"></script>
+  <style>
+    @import url(https: //fonts.googleapis.com/css?family=Khula:700);
+
+    body {
+      background: #111;
+    }
+
+    .hidden {
+      opacity: 0;
+    }
+
+    .console-container {
+
+      font-family: Khula;
+      font-size: 4em;
+      text-align: center;
+      height: 200px;
+      width: 600px;
+      display: block;
+      position: absolute;
+      color: white;
+      top: 0;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      margin: auto;
+    }
+
+    .console-underscore {
+      display: inline-block;
+      position: relative;
+      top: -0.14em;
+      left: 10px;
+    }
+    .test{
+      display: none;
+      font-family: Khula;
+      font-size: 4em;
+      text-align: center;
+      height: 200px;
+      width: 600px;
+      /* display: block; */
+      position: absolute;
+      color: white;
+      top: 0;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      margin: auto;
+    }
+    .console-test{
+      position: relative;
+      top: -0.14em;
+      left: 10px;
+      text-align: left;
+    }
+  </style>
+  <title>Hey</title>
+</head>
+
+<body>
+  <div class='console-container'>
+    <span id='text'></span>
+    <div class='console-underscore' id='console'>&#95;</div>
+  </div>
+  <div class='test'>
+      <div class='console-test' id='console'>第一次一起看的電影是哪一部?</div>
+      <div class='console-test' id='console'>(A)黑豹</div>
+      <div class='console-test' id='console'>(B)不可能的任務</div>
+      <div class='console-test' id='console'>(C)沒有一起看過</div>
+  </div>
+</body>
+
+<script>
+  // function([string1, string2],target id,[color1,color2])    
+  consoleText(['Hello Sylvia.', 'I want play a game.', 'You have to make a choice.'], 'text', ['tomato', 'tomato', 'tomato']);
+
+  function consoleText(words, id, colors) {
+    if (colors === undefined) colors = ['#fff'];
+    var visible = true;
+    var con = document.getElementById('console');
+    var letterCount = 1;
+    var x = 1;
+    var nun = 0;
+    var waiting = false;
+    var target = document.getElementById(id)
+    target.setAttribute('style', 'color:' + colors[0])
+    var myTimer = setInterval(function () {
+
+      if (letterCount === 0 && waiting === false) {
+        nun += 1;
+        if (nun === 3) {
+          window.clearInterval(myTimer);
+          $('.console-container').css('display','none');
+          $('.test').css('display','block');
+        }
+        console.log(nun)
+        waiting = true;
+        target.innerHTML = words[0].substring(0, letterCount)
+        window.setTimeout(function () {
+          var usedColor = colors.shift();
+          colors.push(usedColor);
+          var usedWord = words.shift();
+          words.push(usedWord);
+          x = 1;
+          target.setAttribute('style', 'color:' + colors[0])
+          letterCount += x;
+          waiting = false;
+        }, 1000)
+      } else if (letterCount === words[0].length + 1 && waiting === false) {
+        waiting = true;
+        if (nun === 3) {
+          return;
+        }
+        window.setTimeout(function () {
+          x = -1;
+          letterCount += x;
+          waiting = false;
+        }, 1000)
+      } else if (waiting === false) {
+        if (nun === 3) {
+          return;
+        }
+        target.innerHTML = words[0].substring(0, letterCount)
+        letterCount += x;
+      }
+    }, 120)
+    // window.setInterval(function() {
+    //   if (visible === true) {
+    //     con.className = 'console-underscore hidden'
+    //     visible = false;
+
+    //   } else {
+    //     con.className = 'console-underscore'
+
+    //     visible = true;
+    //   }
+    // }, 400)
+  }
+</script>
+
 </html>
