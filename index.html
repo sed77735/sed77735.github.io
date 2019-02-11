@@ -8,7 +8,7 @@
   <script src="https://code.jquery.com/color/jquery.color-2.1.2.js" integrity="sha256-1Cn7TdfHiMcEbTuku97ZRSGt2b3SvZftEIn68UMgHC8="
     crossorigin="anonymous"></script>
   <style>
-    @import url(https://fonts.googleapis.com/css?family=Khula:700);
+    @import url(https: //fonts.googleapis.com/css?family=Khula:700);
 
     body {
       background: #111;
@@ -177,11 +177,12 @@
       width: 600px;
       position: absolute;
       color: white;
-      top: 0;
+      top: -230px;
       bottom: 0;
       left: 0;
       right: 0;
       margin: auto;
+      line-height: 1.5;
     }
 
     .console-test {
@@ -206,22 +207,21 @@
   </div>
   <div class='test'>
     <span class="qanda">
-      <div class='console-test' id='console'>text</div>
-      <div class='console-test' id='consoleA'>(A)</div>
-      <div class='console-test' id='consoleB'>(B)</div>
-      <div class='console-test' id='consoleC'>(C)</div>
+      <div class='console-test' id='console'>妳第一次跟Ted單獨在下班時間吃的餐廳是什麼？</div>
+      <div class='console-test' id='consoleA'>(A)remember me cafe</div>
+      <div class='console-test' id='consoleB'>(B)莫凡彼</div>
+      <div class='console-test' id='consoleC'>(C)新莊日本料理</div>
     </span>
     <span class="qanda1">
-      <div class='console-test' id='console'>text1</div>
-      <div class='console-test' id='consoleA_1'>(A)</div>
-      <div class='console-test' id='consoleB_1'>(B)</div>
-      <div class='console-test' id='consoleC_1'>(C)</div>
+      <div class='console-test' id='console'>妳去年的2/14是看哪一部電影？</div>
+      <div class='console-test' id='consoleA_1'>(A)黑豹</div>
+      <div class='console-test' id='consoleB_1'>(B)紅雀</div>
+      <div class='console-test' id='consoleC_1'>(C)水底情深</div>
     </span>
     <span class="qanda2">
-      <div class='console-test' id='console'>text2</div>
-      <div class='console-test' id='consoleA_2'>(A)</div>
-      <div class='console-test' id='consoleB_2'>(B)</div>
-      <div class='console-test' id='consoleC_2'>(C)</div>
+      <div class='console-test' id='console'>我去年的今天有沒有被妳騙到？</div>
+      <div class='console-test' id='consoleA_2'>(A)有</div>
+      <div class='console-test' id='consoleB_2'>(B)沒有</div>
     </span>
 
   </div>
@@ -273,9 +273,9 @@
   $('#text1').css('display', 'none');
   var success = 0;
   var error = 0;
-
+  var lasttalk = false;
   // function([string1, string2],target id,[color1,color2])    
-  consoleText(['Hello Kelly.', 'I want play a game.', 'You have to make a choice.'], 'text', ['white', 'white', 'white']);
+  consoleText(['Hello Sylvia.', 'I want play a game.', 'You have to make a choice.', 'Are you Ready?', '如果Ted跟小花都不會游泳掉到水裡，妳會救誰?', '想也知道妳的答案！所以我沒有要給妳選項！哈哈哈哈哈', '好啦，第一個問題是'], 'text', ['white', 'white', 'white'], 'once');
   // consoleText(['TEXT ALGGGG.'], 'text', ['white'], 'once');
   function consoleText(words, id, colors, final) {
     if (colors === undefined) colors = ['#fff'];
@@ -305,7 +305,7 @@
             $("body").animate({
               backgroundColor: "rgb( 255, 255, 255 )"
             });
-            consolefinal(['TEXTfinal ALGGGG.', 'click me', 'click click'], 'text1', ['#F48FB1']);
+            consolefinal(['欸欸欸欸欸，等等！', '點我！點我！拜託嘛！還有最後一小段真的沒了！！！', 'Click Me'], 'text1', ['#F48FB1']);
           }, 1000);
 
         }
@@ -384,12 +384,12 @@
   }
   // problem1
   $('#consoleA').click(function () {
-    success += 1;
+    error += 1;
     $('.qanda').css('display', 'none');
     $('.qanda1').css('display', 'block');
   });
   $('#consoleB').click(function () {
-    error += 1;
+    success += 1;
     $('.qanda').css('display', 'none');
     $('.qanda1').css('display', 'block');
   });
@@ -416,30 +416,50 @@
   });
   // problem3
   $('#consoleA_2').click(function () {
-    success += 1;
+    lasttalk = true;
     $('.qanda2').css('display', 'none');
     $('.test').css('display', 'none');
     $('.console-container').css('display', 'block');
-    consoleText(['success' + success + 'error' + error + '.', 'test+++'], 'text', ['white', 'white']);
+    finaltalk();
   });
   $('#consoleB_2').click(function () {
-    error += 1;
+    lasttalk = false;
     $('.qanda2').css('display', 'none');
     $('.test').css('display', 'none');
     $('.console-container').css('display', 'block');
-    consoleText(['success' + success + 'error' + error + '.', 'test+++'], 'text', ['white', 'white']);
+    finaltalk();
   });
-  $('#consoleC_2').click(function () {
-    error += 1;
-    $('.qanda2').css('display', 'none');
-    $('.test').css('display', 'none');
-    $('.console-container').css('display', 'block');
-    consoleText(['success' + success + 'error' + error + '.', 'test+++'], 'text', ['white', 'white']);
-  });
-
   $('#text1').click(function () {
     alert('successssss');
   });
+
+  function finaltalk(){
+    var arr =  [];
+    if(success === 2){
+      arr.push('前面2題全對，妳還滿用心的嘛！');
+    } else if(error === 2){
+      arr.push('前面2題全錯！！！，好啦！不怪妳，妳本來記憶力就不好，哈哈哈哈哈');
+    } else {
+      arr.push('前面2題1題對1題錯！以妳來說，正常發揮！');
+    }
+
+    if(lasttalk){
+      arr.push('最後一題，沒錯！妳騙到我了！因為去年的2/14，我還真的以為妳是單身！');
+    } else {
+      arr.push('最後一題，不對！妳騙到我了！因為去年的2/14，我還真的以為妳是單身！');
+    }
+    arr.push('有想起來嗎？');
+    arr.push('去年的2/14我們是一起過的，那天中午我們兩個去吃拉亞');
+    arr.push('我中午還問妳，情人節沒有要跟男朋友還是其他男生一起過嗎？妳說沒有阿，我根本不知道今天情人節');
+    arr.push('下班後也是只有我們兩個，要教妳付款交易怎麼串我寫的頁面，我們去了一家附近妳知道的咖啡廳，結果他沒有開');
+    arr.push('後來我們去美麗華吃了莫凡彼，聊了兩三個小時吧！真的教妳的時間大概30分鐘，有沒有感覺是被我騙出去的，哈哈哈哈哈');
+    arr.push('然後晚上我們去看了黑豹，我第一次送妳回松山，那天妳到家時間也很晚了，我想說妳應該是真的沒有男朋友，那天真的有相信妳！可惡！');
+    arr.push('我也是從那天開始很謝謝妳把妳當很真心的好朋友，幾乎每天都會line妳直到現在');
+    arr.push('也沒想到我後來會這麼這麼這麼的愛妳');
+    arr.push('今年的情人節就不是小年夜了哦！妳應該就是跟小花過了吧！哈哈');
+    arr.push('最後祝妳情人節快樂！李思穎');
+    consoleText(arr, 'text', ['white', 'white']);
+  }
 </script>
 
 </html>
