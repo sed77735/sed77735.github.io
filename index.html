@@ -3,7 +3,9 @@
 
 <head>
   <meta charset="utf-8">
-  <script src="https://code.jquery.com/jquery-3.3.1.slim.js" integrity="sha256-fNXJFIlca05BIO2Y5zh1xrShK3ME+/lYZ0j+ChxX2DA="
+  <script src="https://code.jquery.com/jquery-2.2.4.js" integrity="sha256-iT6Q9iMJYuQiMWNd9lDyBUStIq/8PuOW33aOqmvFpqI="
+    crossorigin="anonymous"></script>
+  <script src="https://code.jquery.com/color/jquery.color-2.1.2.js" integrity="sha256-1Cn7TdfHiMcEbTuku97ZRSGt2b3SvZftEIn68UMgHC8="
     crossorigin="anonymous"></script>
   <style>
     @import url(https: //fonts.googleapis.com/css?family=Khula:700);
@@ -300,7 +302,10 @@
           $('.test').css('display', 'none');
           $('.hertdiv').css('display', 'flex');
           setTimeout(function () {
-            consolefinal(['TEXTfinal ALGGGG.','click me','click click'], 'text1', ['tomato']);
+            $("body").animate({
+              backgroundColor: "rgb( 255, 255, 255 )"
+            });
+            consolefinal(['TEXTfinal ALGGGG.', 'click me', 'click click'], 'text1', ['tomato']);
           }, 1000);
 
         }
@@ -349,7 +354,7 @@
     var myTimerfinal = setInterval(function () {
       if (letterCount === 0 && waiting === false) {
         nun += 1;
-        console.error("nun",nun)
+        console.error("nun", nun)
         waiting = true;
         target.innerHTML = words[0].substring(0, letterCount)
         window.setTimeout(function () {
@@ -364,7 +369,7 @@
         }, 1000)
       } else if (letterCount === words[0].length + 1 && waiting === false) {
         waiting = true;
-        if (nun !== words.length-1) {
+        if (nun !== words.length - 1) {
           window.setTimeout(function () {
             x = -1;
             letterCount += x;
