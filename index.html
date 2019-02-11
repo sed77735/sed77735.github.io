@@ -306,7 +306,7 @@
               backgroundColor: "rgb( 255, 255, 255 )"
             });
             consolefinal(['欸欸欸欸欸，等等！', '點我！點我！拜託嘛！還有最後一小段真的沒了！！！', 'Click Me'], 'text1', ['#F48FB1']);
-          }, 1000);
+          }, 500);
 
         }
         console.log(nun)
@@ -321,7 +321,7 @@
           target.setAttribute('style', 'color:' + colors[0])
           letterCount += x;
           waiting = false;
-        }, 1000)
+        }, 500)
       } else if (letterCount === words[0].length + 1 && waiting === false) {
         waiting = true;
         window.setTimeout(function () {
@@ -333,7 +333,7 @@
         target.innerHTML = words[0].substring(0, letterCount)
         letterCount += x;
       }
-    }, 120)
+    }, 100)
   }
 
   // final text
@@ -366,7 +366,7 @@
           target.setAttribute('style', 'color:' + colors[0])
           letterCount += x;
           waiting = false;
-        }, 1000)
+        }, 500)
       } else if (letterCount === words[0].length + 1 && waiting === false) {
         waiting = true;
         if (nun !== words.length - 1) {
@@ -374,13 +374,13 @@
             x = -1;
             letterCount += x;
             waiting = false;
-          }, 1000)
+          }, 500)
         }
       } else if (waiting === false) {
         target.innerHTML = words[0].substring(0, letterCount)
         letterCount += x;
       }
-    }, 120)
+    }, 100)
   }
   // problem1
   $('#consoleA').click(function () {
