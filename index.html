@@ -261,7 +261,7 @@
         <div class="half-heart"></div>
       </div>
     </section>
-  </figure> -->
+  </figure>
   <footer class="hertdiv">Happy Valentine's Day</footer>
 </body>
 
@@ -275,8 +275,8 @@
   var error = 0;
 
   // function([string1, string2],target id,[color1,color2])    
-  // consoleText(['Hello Sylvia.', 'I want play a game.', 'You have to make a choice.'], 'text', ['tomato', 'tomato', 'tomato']);
-  consoleText(['TEXT ALGGGG.'], 'text', ['tomato'], 'once');
+  // consoleText(['Hello Sylvia.', 'I want play a game.', 'You have to make a choice.'], 'text', ['white', 'white', 'white']);
+  consoleText(['TEXT ALGGGG.'], 'text', ['white'], 'once');
   function consoleText(words, id, colors, final) {
     if (colors === undefined) colors = ['#fff'];
     var visible = true;
@@ -305,7 +305,7 @@
             $("body").animate({
               backgroundColor: "rgb( 255, 255, 255 )"
             });
-            consolefinal(['TEXTfinal ALGGGG.', 'click me', 'click click'], 'text1', ['tomato']);
+            consolefinal(['TEXTfinal ALGGGG.', 'click me', 'click click'], 'text1', ['#F48FB1']);
           }, 1000);
 
         }
@@ -420,21 +420,21 @@
     $('.qanda2').css('display', 'none');
     $('.test').css('display', 'none');
     $('.console-container').css('display', 'block');
-    consoleText(['success' + success + 'error' + error + '.', 'test+++'], 'text', ['tomato', 'tomato']);
+    consoleText(['success' + success + 'error' + error + '.', 'test+++'], 'text', ['white', 'white']);
   });
   $('#consoleB_2').click(function () {
     error += 1;
     $('.qanda2').css('display', 'none');
     $('.test').css('display', 'none');
     $('.console-container').css('display', 'block');
-    consoleText(['success' + success + 'error' + error + '.', 'test+++'], 'text', ['tomato', 'tomato']);
+    consoleText(['success' + success + 'error' + error + '.', 'test+++'], 'text', ['white', 'white']);
   });
   $('#consoleC_2').click(function () {
     error += 1;
     $('.qanda2').css('display', 'none');
     $('.test').css('display', 'none');
     $('.console-container').css('display', 'block');
-    consoleText(['success' + success + 'error' + error + '.', 'test+++'], 'text', ['tomato', 'tomato']);
+    consoleText(['success' + success + 'error' + error + '.', 'test+++'], 'text', ['white', 'white']);
   });
 
   $('#text1').click(function () {
