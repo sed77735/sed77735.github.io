@@ -42,7 +42,7 @@
       text-transform: uppercase;
       letter-spacing: 2px;
       font-family: "verdana";
-      font-size: 22px;
+      font-size: 40px;
       color: #F48FB1;
     }
 
@@ -173,7 +173,6 @@
       text-align: center;
       height: 200px;
       width: 600px;
-      /* display: block; */
       position: absolute;
       color: white;
       top: 0;
@@ -189,6 +188,10 @@
       left: 10px;
       text-align: left;
     }
+
+    .hertdiv {
+      display: none;
+    }
   </style>
   <title>Hey</title>
 </head>
@@ -196,15 +199,32 @@
 <body>
   <div class='console-container'>
     <span id='text'></span>
+    <span id='text1'></span>
     <div class='console-underscore' id='console'>&#95;</div>
   </div>
-  <!-- <div class='test'>
-      <div class='console-test' id='console'>第一次一起看的電影是哪一部?</div>
-      <div class='console-test' id='console'>(A)黑豹</div>
-      <div class='console-test' id='console'>(B)不可能的任務</div>
-      <div class='console-test' id='console'>(C)沒有一起看過</div>
-  </div> -->
-  <figure class="hearts">
+  <div class='test'>
+    <span class="qanda">
+      <div class='console-test' id='console'>text</div>
+      <div class='console-test' id='consoleA'>(A)</div>
+      <div class='console-test' id='consoleB'>(B)</div>
+      <div class='console-test' id='consoleC'>(C)</div>
+    </span>
+    <span class="qanda1">
+      <div class='console-test' id='console'>text1</div>
+      <div class='console-test' id='consoleA_1'>(A)</div>
+      <div class='console-test' id='consoleB_1'>(B)</div>
+      <div class='console-test' id='consoleC_1'>(C)</div>
+    </span>
+    <span class="qanda2">
+      <div class='console-test' id='console'>text2</div>
+      <div class='console-test' id='consoleA_2'>(A)</div>
+      <div class='console-test' id='consoleB_2'>(B)</div>
+      <div class='console-test' id='consoleC_2'>(C)</div>
+    </span>
+
+  </div>
+
+  <figure class="hearts hertdiv">
     <section class="heart">
       <div class="plane">
         <div class="half-heart"></div>
@@ -239,15 +259,23 @@
         <div class="half-heart"></div>
       </div>
     </section>
-  </figure>
-  <footer>Happy Valentine's Day</footer>
+  </figure> -->
+  <footer class="hertdiv">Happy Valentine's Day</footer>
 </body>
 
 <script>
-  // function([string1, string2],target id,[color1,color2])    
-  consoleText(['Hello Sylvia.', 'I want play a game.', 'You have to make a choice.'], 'text', ['tomato', 'tomato', 'tomato']);
+  $('.hertdiv').css('display', 'none');
+  $('.qanda').css('display', 'none');
+  $('.qanda1').css('display', 'none');
+  $('.qanda2').css('display', 'none');
+  $('#text1').css('display', 'none');
+  var success = 0;
+  var error = 0;
 
-  function consoleText(words, id, colors) {
+  // function([string1, string2],target id,[color1,color2])    
+  // consoleText(['Hello Sylvia.', 'I want play a game.', 'You have to make a choice.'], 'text', ['tomato', 'tomato', 'tomato']);
+  consoleText(['TEXT ALGGGG.'], 'text', ['tomato'], 'once');
+  function consoleText(words, id, colors, final) {
     if (colors === undefined) colors = ['#fff'];
     var visible = true;
     var con = document.getElementById('console');
@@ -261,10 +289,20 @@
 
       if (letterCount === 0 && waiting === false) {
         nun += 1;
-        if (nun === 3) {
+        if (nun === words.length && typeof final !== 'undefined' && final === 'once') {
           window.clearInterval(myTimer);
           $('.console-container').css('display', 'none');
           $('.test').css('display', 'block');
+          $('.qanda').css('display', 'block');
+        } else if (nun === words.length) {
+          window.clearInterval(myTimer);
+          $('.console-container').css('display', 'none');
+          $('.test').css('display', 'none');
+          $('.hertdiv').css('display', 'flex');
+          setTimeout(function () {
+            consolefinal(['TEXTfinal ALGGGG.','click me','click click'], 'text1', ['tomato']);
+          }, 1000);
+
         }
         console.log(nun)
         waiting = true;
@@ -281,34 +319,122 @@
         }, 1000)
       } else if (letterCount === words[0].length + 1 && waiting === false) {
         waiting = true;
-        if (nun === 3) {
-          return;
-        }
         window.setTimeout(function () {
           x = -1;
           letterCount += x;
           waiting = false;
         }, 1000)
       } else if (waiting === false) {
-        if (nun === 3) {
-          return;
-        }
         target.innerHTML = words[0].substring(0, letterCount)
         letterCount += x;
       }
     }, 120)
-    // window.setInterval(function() {
-    //   if (visible === true) {
-    //     con.className = 'console-underscore hidden'
-    //     visible = false;
-
-    //   } else {
-    //     con.className = 'console-underscore'
-
-    //     visible = true;
-    //   }
-    // }, 400)
   }
+
+  // final text
+  function consolefinal(words, id, colors, final) {
+    $('.console-container').css('display', 'block');
+    $('#text').css('display', 'none');
+    $('#text1').css('display', 'block');
+    $('.console-container').css('top', '45%');
+    if (colors === undefined) colors = ['#fff'];
+    var visible = true;
+    var con = document.getElementById('console');
+    var letterCount = 1;
+    var x = 1;
+    var nun = 0;
+    var waiting = false;
+    var target = document.getElementById(id)
+    target.setAttribute('style', 'color:' + colors[0])
+    var myTimerfinal = setInterval(function () {
+      if (letterCount === 0 && waiting === false) {
+        nun += 1;
+        console.error("nun",nun)
+        waiting = true;
+        target.innerHTML = words[0].substring(0, letterCount)
+        window.setTimeout(function () {
+          var usedColor = colors.shift();
+          colors.push(usedColor);
+          var usedWord = words.shift();
+          words.push(usedWord);
+          x = 1;
+          target.setAttribute('style', 'color:' + colors[0])
+          letterCount += x;
+          waiting = false;
+        }, 1000)
+      } else if (letterCount === words[0].length + 1 && waiting === false) {
+        waiting = true;
+        if (nun !== words.length-1) {
+          window.setTimeout(function () {
+            x = -1;
+            letterCount += x;
+            waiting = false;
+          }, 1000)
+        }
+      } else if (waiting === false) {
+        target.innerHTML = words[0].substring(0, letterCount)
+        letterCount += x;
+      }
+    }, 120)
+  }
+  // problem1
+  $('#consoleA').click(function () {
+    success += 1;
+    $('.qanda').css('display', 'none');
+    $('.qanda1').css('display', 'block');
+  });
+  $('#consoleB').click(function () {
+    error += 1;
+    $('.qanda').css('display', 'none');
+    $('.qanda1').css('display', 'block');
+  });
+  $('#consoleC').click(function () {
+    error += 1;
+    $('.qanda').css('display', 'none');
+    $('.qanda1').css('display', 'block');
+  });
+  // problem2
+  $('#consoleA_1').click(function () {
+    success += 1;
+    $('.qanda1').css('display', 'none');
+    $('.qanda2').css('display', 'block');
+  });
+  $('#consoleB_1').click(function () {
+    error += 1;
+    $('.qanda1').css('display', 'none');
+    $('.qanda2').css('display', 'block');
+  });
+  $('#consoleC_1').click(function () {
+    error += 1;
+    $('.qanda1').css('display', 'none');
+    $('.qanda2').css('display', 'block');
+  });
+  // problem3
+  $('#consoleA_2').click(function () {
+    success += 1;
+    $('.qanda2').css('display', 'none');
+    $('.test').css('display', 'none');
+    $('.console-container').css('display', 'block');
+    consoleText(['success' + success + 'error' + error + '.', 'test+++'], 'text', ['tomato', 'tomato']);
+  });
+  $('#consoleB_2').click(function () {
+    error += 1;
+    $('.qanda2').css('display', 'none');
+    $('.test').css('display', 'none');
+    $('.console-container').css('display', 'block');
+    consoleText(['success' + success + 'error' + error + '.', 'test+++'], 'text', ['tomato', 'tomato']);
+  });
+  $('#consoleC_2').click(function () {
+    error += 1;
+    $('.qanda2').css('display', 'none');
+    $('.test').css('display', 'none');
+    $('.console-container').css('display', 'block');
+    consoleText(['success' + success + 'error' + error + '.', 'test+++'], 'text', ['tomato', 'tomato']);
+  });
+
+  $('#text1').click(function () {
+    alert('successssss');
+  });
 </script>
 
 </html>
